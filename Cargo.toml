@@ -5,9 +5,14 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[[bin]]
+name = "main"
+path = "src/main.rs"
+
 [dependencies]
-bincode = "1.3.3"
-snafu = "0.8.2"
+bypar = { git = "https://gitlab.mglolenstine.xyz/MGlolenstine/bypar.git", version = "0.1.0", branch = "traits", features = ["full"] }
+bypar_derive = { git = "https://gitlab.mglolenstine.xyz/MGlolenstine/bypar_derive.git", branch = "switch_to_traits", version = "0.1.0", features = ["full"] }
+snafu = "0.8.4"
 tracing = "0.1.40"
 tracing-subscriber = "0.3.18"
-wasmtime = "20.0.2"
+wasmtime = "24.0.0"

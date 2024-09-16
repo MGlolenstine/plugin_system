@@ -32,7 +32,8 @@ impl Plugin {
 
     pub fn init(&mut self) {
         // This defines a Rust function that a WASM module can call.
-        let hello_func = Func::wrap(&mut self.store, |_caller: Caller<'_, ()>| {
+        let hello_func = Func::wrap(&mut self.store, |pointer: i32, length: i32| {
+            println!("Pointer: {}, length: {}", pointer, length);
             println!("Calling back...");
         });
 
@@ -98,8 +99,6 @@ impl Plugin {
 
 #[test]
 fn test_basic_struct() {
-    tracing_subscriber::fmt::init();
-
     let engine = Engine::default();
     let mut plugin = Plugin::new(&engine, "tests/hello.wat");
     plugin.init();
